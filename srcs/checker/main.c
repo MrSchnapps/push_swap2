@@ -6,7 +6,7 @@
 /*   By: judecuyp <judecuyp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:18:56 by judecuyp          #+#    #+#             */
-/*   Updated: 2021/03/10 20:34:49 by judecuyp         ###   ########.fr       */
+/*   Updated: 2021/03/10 20:51:23 by judecuyp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,17 @@ int	select_move(t_swap *a, t_swap *b, char *line)
 		rrb(a, b);
 	else if (!ft_strcmp(line, "rrr"))
 		rrr(a, b);
-	else
+	else if (!check_sorted(a))
 		return (ft_error(ERR));
 	return (0);
+}
+
+void	print_solv(int solved)
+{
+	if (solved)
+		ft_putstr_fd("OK\n", 1);
+	else
+		ft_putstr_fd("KO\n", 1);
 }
 
 int	resolve(t_swap *a, t_swap *b)
@@ -49,23 +57,18 @@ int	resolve(t_swap *a, t_swap *b)
 	int		ret;
 
 	solved = 0;
-	if (check_sorted(a))
-		solved = 1;
 	ret = 1;
 	while (ret > 0 && !solved)
 	{
 		ret = get_next_line(0, &line);
-		if (ret <= 0)
+		if (ret < 0)
 			return (ft_error(MERR));
 		if (select_move(a, b, line))
 			return (free_str(&line, ERR));
 		if (check_sorted(a))
 			solved = 1;
 	}
-	if (solved)
-		ft_putstr_fd("OK\n", 1);
-	else
-		ft_putstr_fd("KO\n", 1);
+	print_solv(solved);
 	return (0);
 }
 
