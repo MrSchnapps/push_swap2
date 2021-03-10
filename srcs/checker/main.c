@@ -6,7 +6,7 @@
 /*   By: judecuyp <judecuyp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:18:56 by judecuyp          #+#    #+#             */
-/*   Updated: 2021/03/10 20:16:24 by judecuyp         ###   ########.fr       */
+/*   Updated: 2021/03/10 20:34:49 by judecuyp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	resolve(t_swap *a, t_swap *b)
 	int		ret;
 
 	solved = 0;
+	if (check_sorted(a))
+		solved = 1;
 	ret = 1;
 	while (ret > 0 && !solved)
 	{
@@ -83,8 +85,6 @@ int	main(int argc, char **argv)
 	err = allocate_stack(&a, &b, argv, argc);
 	if (err)
 		return (err);
-	if (check_sorted(&a))
-		return (ft_free(&a, &b, 0));
 	err = resolve(&a, &b);
 	if (err)
 		return (ft_free(&a, &b, (int)err));
