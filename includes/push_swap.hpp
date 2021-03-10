@@ -6,7 +6,7 @@
 /*   By: judecuyp <judecuyp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 13:27:56 by judecuyp          #+#    #+#             */
-/*   Updated: 2021/03/09 16:41:35 by judecuyp         ###   ########.fr       */
+/*   Updated: 2021/03/10 13:32:38 by judecuyp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
+# include <time.h> //virer time
 
 # define NAN 3
 # define MERR 4
@@ -24,6 +25,12 @@
 # define INDERR 6
 # define OFERR 7
 # define ERR 2
+
+typedef struct	s_chunk
+{
+	int64_t	*steps;
+	int64_t	*values;
+}				t_chunk;
 
 typedef struct	s_part
 {
@@ -67,6 +74,7 @@ void	print_stack(t_swap *s);
 void	print_part(t_swap *s);
 int		getMedian(int64_t *stack, int64_t start, int64_t end, int64_t *med);
 int		add_index(t_part **s, size_t index);
+size_t	find_max(t_swap *s);
 
 /*
 ** Parsing
@@ -111,4 +119,11 @@ int		check_sorted(t_swap *s);
 void	sort_three(t_swap *a, t_swap *b);
 void	sort_three_a(t_swap *a, t_swap *b);
 void	sort_three_b(t_swap *a, t_swap *b);
+void	sort_tab(int64_t* tab, int64_t size);
+
+/*
+** Big size
+*/
+
+void	big_size(t_swap *a, t_swap *b);
 #endif

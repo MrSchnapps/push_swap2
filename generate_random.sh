@@ -6,7 +6,7 @@ max=$1
 while ((i<$max))
 do
 	tester=1
-	RAND=$((1 + RANDOM % 3000))
+	RAND=$((1 + RANDOM % 110))
 	for j in "${TAB[@]}"; do
 		if [[ $j == $RAND ]]
 		then
@@ -20,5 +20,5 @@ do
 	fi
 done
 echo ${TAB[*]} > values
-ARG=$(cat values);
-./push_swap $ARG | ./checker $ARG | wc -l
+valgrind --leak-check=full ARG=$(cat values);
+./push_swap.exe2 $ARG | ./checker.exe2 $ARG #| wc -l

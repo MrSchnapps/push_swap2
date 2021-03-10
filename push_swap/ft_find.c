@@ -6,12 +6,11 @@
 /*   By: judecuyp <judecuyp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 22:55:15 by judecuyp          #+#    #+#             */
-/*   Updated: 2021/03/10 01:06:57 by judecuyp         ###   ########.fr       */
+/*   Updated: 2021/03/10 13:32:31 by judecuyp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.hpp"
-#include <time.h> //virer time
 
 void	b_to_a(t_swap *a, t_swap *b)
 {
@@ -75,13 +74,18 @@ int		split_a(t_swap *a, t_swap *b)
 
 int		ft_find(t_swap *a, t_swap *b)
 {
-	while (!check_sorted(a))
+	if (a->size > 99)
+		big_size(a, b);
+	else
 	{
-		while (a->len - a->part->len > 3)
-			if (split_a(a, b))
-				return (MERR);
-		sort_three(a, b);
-		b_to_a(a, b);
+		while (!check_sorted(a))
+		{
+			while (a->len - a->part->len > 3)
+				if (split_a(a, b))
+					return (MERR);
+			sort_three(a, b);
+			b_to_a(a, b);
+		}
 	}
 	return (0);
 }
