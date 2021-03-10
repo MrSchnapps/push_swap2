@@ -6,14 +6,14 @@
 /*   By: judecuyp <judecuyp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:18:56 by judecuyp          #+#    #+#             */
-/*   Updated: 2021/03/10 20:51:23 by judecuyp         ###   ########.fr       */
+/*   Updated: 2021/03/10 20:52:28 by judecuyp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "get_next_line.h"
 
-int	select_move(t_swap *a, t_swap *b, char *line)
+int		select_move(t_swap *a, t_swap *b, char *line)
 {
 	if (!ft_strcmp(line, "sa"))
 		sa(a, b);
@@ -50,7 +50,7 @@ void	print_solv(int solved)
 		ft_putstr_fd("KO\n", 1);
 }
 
-int	resolve(t_swap *a, t_swap *b)
+int		resolve(t_swap *a, t_swap *b)
 {
 	int		solved;
 	char	*line;
@@ -72,7 +72,7 @@ int	resolve(t_swap *a, t_swap *b)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_swap	a;
 	t_swap	b;
