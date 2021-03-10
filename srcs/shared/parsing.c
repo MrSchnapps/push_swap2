@@ -6,7 +6,7 @@
 /*   By: judecuyp <judecuyp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 16:19:52 by judecuyp          #+#    #+#             */
-/*   Updated: 2021/03/10 19:56:18 by judecuyp         ###   ########.fr       */
+/*   Updated: 2021/03/10 20:23:27 by judecuyp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	allocate_stack(t_swap *a, t_swap *b, char **argv, int argc)
 	if (!(a->stack = (int64_t *)malloc(sizeof(int64_t) * (argc - 1))))
 		return (ft_error(MERR));
 	if (!(b->stack = (int64_t *)malloc(sizeof(int64_t) * (argc - 1))))
-		return (ft_error(ft_free(a, b, MERR)));
+		return (ft_error(MERR));
 	while (--argc > 0)
 	{
 		a->stack[j] = (int64_t)ft_atoil(argv[argc]);
 		if (a->stack[j] > INT32_MAX || a->stack[j] < INT32_MIN)
-			return (ft_error(ft_free(a, b, OFERR)));
+			return (ft_error(OFERR));
 		a->len++;
 		j++;
 	}
@@ -36,7 +36,7 @@ int	allocate_stack(t_swap *a, t_swap *b, char **argv, int argc)
 		j = i;
 		while (++j < a->len)
 			if (a->stack[i] == a->stack[j])
-				return (ft_error(ft_free(a, b, DERR)));
+				return (ft_error(DERR));
 	}
 	return (0);
 }
